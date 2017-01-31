@@ -1,5 +1,11 @@
-﻿using System;
+﻿//============================================================
+// Student Number	: S10173251C, S10166858B
+// Student Name	    : Chin Wei Hong, Joe Kawai
+// Module  Group	: IT04
+//============================================================
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +32,9 @@ namespace MovieTicketingSystem {
         }
 
         public override string ToString() {
-            return base.ToString();
+            return String.Format("{0,-5} {1,-20} {2,-20} {3, -20}",
+                OrderNo, OrderDateTime.ToString("dd/MM/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture),
+                Amount, Status);
         }
     }
 }

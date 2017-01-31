@@ -1,4 +1,9 @@
-﻿using System;
+﻿//============================================================
+// Student Number	: S10173251C, S10166858B
+// Student Name	    : Chin Wei Hong, Joe Kawai
+// Module  Group	: IT04
+//============================================================
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,15 +42,13 @@ namespace MovieTicketingSystem {
             String genreString = "";
             
             foreach(Program.MovieGenre genre in GenreList) {
-                if (GenreList.Count() == 1)
-                    genreString = genre.ToString() + ", ";
                 genreString += genre.ToString() + ", ";
             }
             genreString = genreString.Substring(0, genreString.Length - 2);
             
             return String.Format("{0,-30} {1,-15} {2, -20} {3, -20} {4, -20}",
                     Title, Convert.ToString(Duration), genreString, Classification,
-                    OpeningDate.Day.ToString() + "-" + OpeningDate.ToString("MMM") + "-" + OpeningDate.ToString("YY"));
+                    OpeningDate.Day.ToString() + "-" + OpeningDate.ToString("MMM") + "-" + OpeningDate.ToString("yy"));
         }
 
     }

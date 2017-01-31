@@ -1,4 +1,9 @@
-﻿using System;
+﻿//============================================================
+// Student Number	: S10173251C, S10166858B
+// Student Name	    : Chin Wei Hong, Joe Kawai
+// Module  Group	: IT04
+//============================================================
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -24,10 +29,11 @@ namespace MovieTicketingSystem {
             this.ScreeningType = screeningType;
             this.CinemaHall = cinemaHall;
             this.Movie = movie;
+            SeatsRemaining = CinemaHall.Capacity;
         }
 
         public override string ToString() {
-            return String.Format("{0,-5} {1,-20} {2,-10} {3, -20}",
+            return String.Format("{0,-5} {1,-20} {2,-10} {3, -35} {4, -20}",
                 ScreeningNo, CinemaHall.Name, CinemaHall.HallNo, Movie.Title,
                 ScreeningDateTime.ToString("dd/MM/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture));
         }

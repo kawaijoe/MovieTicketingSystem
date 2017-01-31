@@ -1,4 +1,9 @@
-﻿using System;
+﻿//============================================================
+// Student Number	: S10173251C, S10166858B
+// Student Name	    : Chin Wei Hong, Joe Kawai
+// Module  Group	: IT04
+//============================================================
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -50,6 +55,8 @@ namespace MovieTicketingSystem {
                     case 4:
                         deleteMovieScreening();
                         break;
+                    case 5:
+                        break;
                     case 0:
                         return;
                     default:
@@ -68,8 +75,8 @@ namespace MovieTicketingSystem {
             "4.  Delete a movie screening session\n" +
             "5.  Order movie ticket/s\n" +
             "6.  Add a movie rating\n" +
-            "7. View movie ratings and comments\n" +
-            "8. Recommend movies\n" +
+            "7.  View movie ratings and comments\n" +
+            "8.  Recommend movies\n" +
             "0.  Exit\n" +
             "=================================\n" +
             "Enter your option: ");
@@ -222,7 +229,7 @@ namespace MovieTicketingSystem {
         }
 
         public static void displayCinemaHall() {
-            Console.WriteLine(String.Format("\n{0,-5} {1,-20} {2,-15} {3, -15}",
+            Console.WriteLine(String.Format("\n{0,-5} {1,-15} {2,-15} {3, -15}",
                 "No", "Cinema Name", "Hall No", "Capacity"));
             int count = 0;
             foreach (CinemaHall hall in cinemaHallList) {
@@ -232,7 +239,7 @@ namespace MovieTicketingSystem {
         }
 
         public static void displayMovieScreening() {
-            Console.WriteLine(String.Format("\n{0,-5} {1,-20} {2,-10} {3, -20}",
+            Console.WriteLine(String.Format("\n{0,-5} {1,-20} {2,-10} {3, -35} {4, -20}",
                 "No", "Location", "Hall No", "Title", "Date/Time"));
             
             foreach(Screening screening in screeningList) {
@@ -280,6 +287,12 @@ namespace MovieTicketingSystem {
             cinemaHallList.Add(new CinemaHall("Singa East", 1, 5));
             cinemaHallList.Add(new CinemaHall("Singa Central", 1, 20));
             cinemaHallList.Add(new CinemaHall("Singa Central", 2, 15));
+
+            // Add screenings
+            screeningList.Add(new Screening(new DateTime(2016, 12, 29, 15, 0, 0), "3D", cinemaHallList[2], movieList[0]));
+            screeningList.Add(new Screening(new DateTime(2017, 01, 03, 13, 0, 0), "2D", cinemaHallList[3], movieList[1]));
+            screeningList.Add(new Screening(new DateTime(2017, 01, 31, 19, 0, 0), "3D", cinemaHallList[0], movieList[3]));
+            screeningList.Add(new Screening(new DateTime(2017, 02, 02, 15, 0, 0), "2D", cinemaHallList[1], movieList[3]));
         }
     }
 }
