@@ -16,13 +16,14 @@ namespace MovieTicketingSystem {
          * Rants about the flawed design of this assignment
          * 
          * CHAPTER 1: Abuse of override ToString() method
-         * Some may insist that the ToString() method may be good for debugging, however there are much more appropriate tools such as
-         * loggers and unit testing.
+         * Some may insist that the ToString() method may be good for debugging, however there are much more appropriate
+         * tools such as loggers and unit testing.
          * 
          * The ToString() method should only be used if you are creating your own collection/data type for example.
          * For instance, creating your own implementation of a WeakList<> which is currently not in C# collections library.
          * 
-         * If you can name me a popular open source library that abused ToString() in such a way. (Every class having a ToString() method)
+         * If you can name me a popular open source library that abused ToString() in such a way.
+         * (Every class having a ToString() method)
          * I'll follow your pretty dang useless convention. Good luck with that :P
          * 
          * CHAPTER 2: Properties vs Variables
@@ -30,6 +31,12 @@ namespace MovieTicketingSystem {
         */
         public enum MovieGenre { Action, Adventure, Comedy, Fantasy, Thriller }
         public enum MovieClassification { G, PG13, NC16, M18, R21 }
+
+        delegate Object delegateReturnObject();
+        delegate bool delegateReturnBool(Object obj);
+
+        static delegateReturnObject attemptRun;
+        static delegateReturnBool attemptIsCorrect;
 
         public static List<Movie> movieList = new List<Movie>();
         public static List<Screening> screeningList = new List<Screening>();
@@ -41,46 +48,7 @@ namespace MovieTicketingSystem {
         static void Main(string[] args) {
             generateInformation();
 
-            while(true) {
-                switch(getMenuOption()) {
-                    case 1:
-                        listAllMovies();
-                        break;
-                    case 2:
-                        addMovieScreening();
-                        break;
-                    case 3:
-                        listMovieScreening();
-                        break;
-                    case 4:
-                        deleteMovieScreening();
-                        break;
-                    case 5:
-                        break;
-                    case 0:
-                        return;
-                    default:
-                        displayInvalidInput();
-                        break;
-                }
-            }
-        }
-
-        public static int getMenuOption() {
-            Console.Write("\nMovie Ticketing System\n" +
-            "=================================\n" +
-            "1.  List all movies\n" +
-            "2.  Add a movie screening session\n" +
-            "3.  List movie screenings\n" +
-            "4.  Delete a movie screening session\n" +
-            "5.  Order movie ticket/s\n" +
-            "6.  Add a movie rating\n" +
-            "7.  View movie ratings and comments\n" +
-            "8.  Recommend movies\n" +
-            "0.  Exit\n" +
-            "=================================\n" +
-            "Enter your option: ");
-            return tryConvertingStringToInt(Console.ReadLine());
+            
         }
 
         //////////////////// OPTIONS ////////////////////
@@ -97,22 +65,23 @@ namespace MovieTicketingSystem {
             int cinemaHall = 0;
             int movie = 0;
             String screeningType = "";
+            Object temptObject = new Object();
             DateTime date = new DateTime(1, 1, 1);
 
-            for(int i = MAXATTEMPT; i >= 0; i--) {
+            // Select a cinema hall
+            attemptRun = () => {
                 displayCinemaHall();
-
                 Console.Write("Select a cinema hall: ");
-                cinemaHall = tryConvertingStringToInt(Console.ReadLine());
+                return tryConvertingStringToInt(Console.ReadLine());
+            };
+            attemptIsCorrect = obj => { return ((int) obj <= cinemaHallList.Count && (int) obj > 0); };
 
-                if(cinemaHall <= cinemaHallList.Count && cinemaHall > 0)
-                    break;
-                else if(i > 0)
-                    displayInvalidInput(i);
-                else
-                    return;   
-            }
+            temptObject = attempt(attemptRun, attemptIsCorrect);
+            if(temptObject == null)
+                return;
+            cinemaHall = (int) temptObject;
 
+            // Select a movie
             for(int i = MAXATTEMPT; i >= 0; i--) {
                 displayMovies();
 
@@ -247,17 +216,20 @@ namespace MovieTicketingSystem {
             }
         }
 
-        //////////////////// ETC ////////////////////
-        public static int tryConvertingStringToInt(String text) {
-            int n;
-            return int.TryParse(text, out n) ? n : -1;
-        }
+        //////////////////// ETC (Utility methods) ////////////////////
+        static Object attempt(delegateReturnObject attemptRun, delegateReturnBool attemptCorrect) {
+            Object obj = new Object();
+            for(int i = MAXATTEMPT; i >= 0; i--) {
+                obj = attemptRun();
 
-        public static DateTime tryConvertingStringToDateTime(String text) {
-            DateTime date;
-            string[] formats = {"dd/MM/yyyy HH:mm"};
-            return DateTime.TryParseExact(text, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out date)
-                ? date : new DateTime(1, 1, 1, 1, 1, 1);
+                if(attemptCorrect(obj))
+                    break;
+                else if(i > 0)
+                    displayInvalidInput(i);
+                else
+                    return null;
+            }
+            return obj;
         }
 
         public static void displayInvalidInput() {

@@ -43,16 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adult.cs" />
+    <Compile Include="menu\Menu.cs" />
+    <Compile Include="movie\MovieClassification.cs" />
+    <Compile Include="movie\MovieGenre.cs" />
+    <Compile Include="ticket\Adult.cs" />
+    <Compile Include="Attempt.cs" />
     <Compile Include="CinemaHall.cs" />
-    <Compile Include="Movie.cs" />
+    <Compile Include="movie\Movie.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screening.cs" />
-    <Compile Include="SeniorCitizen.cs" />
-    <Compile Include="Student.cs" />
-    <Compile Include="Ticket.cs" />
+    <Compile Include="ticket\SeniorCitizen.cs" />
+    <Compile Include="ticket\Student.cs" />
+    <Compile Include="ticket\Ticket.cs" />
+    <Compile Include="util\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
