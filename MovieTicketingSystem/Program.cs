@@ -29,14 +29,6 @@ namespace MovieTicketingSystem {
          * CHAPTER 2: Properties vs Variables
          * 
         */
-        public enum MovieGenre { Action, Adventure, Comedy, Fantasy, Thriller }
-        public enum MovieClassification { G, PG13, NC16, M18, R21 }
-
-        delegate Object delegateReturnObject();
-        delegate bool delegateReturnBool(Object obj);
-
-        static delegateReturnObject attemptRun;
-        static delegateReturnBool attemptIsCorrect;
 
         public static List<Movie> movieList = new List<Movie>();
         public static List<Screening> screeningList = new List<Screening>();
@@ -54,8 +46,7 @@ namespace MovieTicketingSystem {
         //////////////////// OPTIONS ////////////////////
         // Option 1
         public static void listAllMovies() {
-            Console.WriteLine("\nOption 1. List All Movies");
-            displayMovies();
+            
         }
 
         // Option 2
@@ -217,30 +208,6 @@ namespace MovieTicketingSystem {
         }
 
         //////////////////// ETC (Utility methods) ////////////////////
-        static Object attempt(delegateReturnObject attemptRun, delegateReturnBool attemptCorrect) {
-            Object obj = new Object();
-            for(int i = MAXATTEMPT; i >= 0; i--) {
-                obj = attemptRun();
-
-                if(attemptCorrect(obj))
-                    break;
-                else if(i > 0)
-                    displayInvalidInput(i);
-                else
-                    return null;
-            }
-            return obj;
-        }
-
-        public static void displayInvalidInput() {
-            Console.WriteLine("You have entered an invalid option! Please try again.");
-        }
-
-        public static void displayInvalidInput(int attempts) {
-            Console.WriteLine("You have entered an invalid option! Please try again.");
-            Console.WriteLine("You have " + attempts.ToString() + " attempts left!");
-        }
-
         public static void generateInformation() {
             // Add movies
             movieList.Add(new Movie("The Great Wall", 103, MovieClassification.NC16.ToString(),

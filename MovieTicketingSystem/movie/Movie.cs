@@ -17,7 +17,7 @@ namespace MovieTicketingSystem {
         public int Duration { get; set; }
         public String Classification { get; set; }
         public DateTime OpeningDate { get; set; }
-        public List<Program.MovieGenre> GenreList { get; set; }
+        public List<MovieGenre> GenreList { get; set; }
 
         public Movie() {
         }

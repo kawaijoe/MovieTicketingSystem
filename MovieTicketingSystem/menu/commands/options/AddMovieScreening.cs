@@ -8,6 +8,8 @@ namespace MovieTicketingSystem.menu.commands {
     class AddMovieScreening:Command {
 
         // Option 2
+        public AddMovieScreening() { }
+
         public void execute() {
             throw new NotImplementedException();
         }

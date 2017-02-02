@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace MovieTicketingSystem.util {
     class Utility {
+
         public static int tryConvertingStringToInt(String text) {
             int n;
             return int.TryParse(text, out n) ? n : -1;
@@ -18,5 +19,6 @@ namespace MovieTicketingSystem.util {
             return DateTime.TryParseExact(text, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out date)
                 ? date : new DateTime(1, 1, 1, 1, 1, 1);
         }
+
     }
 }

@@ -8,6 +8,8 @@ namespace MovieTicketingSystem.menu.commands {
     class DeleteMovieScreening:Command {
 
         // Option 4
+        public DeleteMovieScreening() { }
+
         public void execute() {
             throw new NotImplementedException();
         }
