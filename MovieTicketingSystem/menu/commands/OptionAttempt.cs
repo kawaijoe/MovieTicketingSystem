@@ -7,18 +7,16 @@ using System.Threading.Tasks;
 namespace MovieTicketingSystem.util {
     class OptionAttempt {
 
-        public delegate Object delegateReturnObject();
-        public delegate bool delegateReturnBool(Object obj);
+        //public delegate void Consumer();
+        public delegate Object Consumer();
+        public delegate bool ObjectPredicate(Object obj);
 
-        public delegateReturnObject attemptRun;
-        public delegateReturnBool attemptIsCorrect;
-
-        private const int MAX_ATTEMPT = Program.MAXATTEMPT;
+        private const int MAX_ATTEMPT = Program.MAX_ATTEMPT;
 
         public OptionAttempt() {
         }
 
-        public Object attempt(delegateReturnObject attemptRun, delegateReturnBool attemptCorrect) {
+        public Object run(Consumer attemptRun, ObjectPredicate attemptCorrect) {
             Object obj = new Object();
             for(int i = MAX_ATTEMPT; i >= 0; i--) {
                 obj = attemptRun();
@@ -31,6 +29,22 @@ namespace MovieTicketingSystem.util {
                     return null;
             }
             return obj;
+        }
+
+        /*
+         * Return true if the operation was a success
+         * Return false if the operation was a failure
+         */
+        public void run(Consumer attemptRun) {
+            Object obj = new Object();
+            for(int i = MAX_ATTEMPT; i >= 0; i--) {
+                obj = attemptRun();
+
+                if(i > 0 && !(bool)obj)
+                    displayInvalidInput(i);
+                else
+                    return;
+            }
         }
 
         private void displayInvalidInput() {

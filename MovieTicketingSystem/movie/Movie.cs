@@ -22,7 +22,7 @@ namespace MovieTicketingSystem {
         public Movie() {
         }
 
-        public Movie(String title, int duration, String classification, DateTime openingDate, List<Program.MovieGenre> genreList) {
+        public Movie(String title, int duration, String classification, DateTime openingDate, List<MovieGenre> genreList) {
             this.Title = title;
             this.Duration = duration;
             this.Classification = classification;
@@ -31,7 +31,7 @@ namespace MovieTicketingSystem {
         }
 
         /* Getter method for GenreList wts. Aren't there a get property above? o.o */
-        public List<Program.MovieGenre> GetGenreList() {
+        public List<MovieGenre> GetGenreList() {
             return GenreList;
         }
 
@@ -41,7 +41,7 @@ namespace MovieTicketingSystem {
         public override string ToString() {
             String genreString = "";
             
-            foreach(Program.MovieGenre genre in GenreList) {
+            foreach(MovieGenre genre in GenreList) {
                 genreString += genre.ToString() + ", ";
             }
             genreString = genreString.Substring(0, genreString.Length - 2);

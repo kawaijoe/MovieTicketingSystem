@@ -10,13 +10,20 @@ namespace MovieTicketingSystem.menu {
     class Menu {
 
         private String optionText;
+        private Remote remote;
 
         public Menu(String optionText, Dictionary<int, Command> commandDictionary) {
             this.optionText = optionText;
+            remote = new Remote(commandDictionary);
         }
 
         public void run() {
+            int option;
             while(true) {
+                option = getMenuOption();
+                if(option == 0) break;
+
+                remote.executeCommand(option);
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieTicketingSystem.util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,9 @@ namespace MovieTicketingSystem.menu.commands {
         // Option 1
         public ListAllMovies() { }
 
-        public void execute() {
+        public void execute(OptionAttempt attempt) {
             Console.WriteLine("\nOption 1. List All Movies");
-            displayMovies();
+            Display.movies();
         }
     }
 }

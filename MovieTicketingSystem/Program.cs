@@ -3,6 +3,9 @@
 // Student Name	    : Chin Wei Hong, Joe Kawai
 // Module  Group	: IT04
 //============================================================
+using MovieTicketingSystem.menu;
+using MovieTicketingSystem.menu.commands;
+using MovieTicketingSystem.movie;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -35,179 +38,36 @@ namespace MovieTicketingSystem {
         public static List<CinemaHall> cinemaHallList = new List<CinemaHall>();
         public static List<Order> orderList = new List<Order>();
 
-        public const int MAXATTEMPT = 3;
+        public const int MAX_ATTEMPT = 3;
+
+        private const String MENU_TEXT = "\nMovie Ticketing System\n" +
+            "=================================\n" +
+            "1.  List all movies\n" +
+            "2.  Add a movie screening session\n" +
+            "3.  List movie screenings\n" +
+            "4.  Delete a movie screening session\n" +
+            "5.  Order movie ticket/s\n" +
+            "6.  Add a movie rating\n" +
+            "7.  View movie ratings and comments\n" +
+            "8.  Recommend movies\n" +
+            "0.  Exit\n" +
+            "=================================\n" +
+            "Enter your option: ";
+        private static Menu menu;
 
         static void Main(string[] args) {
             generateInformation();
 
-            
+            // Start menu
+            menu = new Menu(MENU_TEXT, new Dictionary<int, Command>(){
+                { 1, new ListAllMovies() },
+                { 2, new AddMovieScreening() },
+                { 3, new ListMovieScreening() },
+                { 4, new DeleteMovieScreening() }
+            });
+            menu.run();
         }
 
-        //////////////////// OPTIONS ////////////////////
-        // Option 1
-        public static void listAllMovies() {
-            
-        }
-
-        // Option 2
-        public static void addMovieScreening() {
-            Console.WriteLine("\nOption 2. Add Movie Screening");
-
-            int cinemaHall = 0;
-            int movie = 0;
-            String screeningType = "";
-            Object temptObject = new Object();
-            DateTime date = new DateTime(1, 1, 1);
-
-            // Select a cinema hall
-            attemptRun = () => {
-                displayCinemaHall();
-                Console.Write("Select a cinema hall: ");
-                return tryConvertingStringToInt(Console.ReadLine());
-            };
-            attemptIsCorrect = obj => { return ((int) obj <= cinemaHallList.Count && (int) obj > 0); };
-
-            temptObject = attempt(attemptRun, attemptIsCorrect);
-            if(temptObject == null)
-                return;
-            cinemaHall = (int) temptObject;
-
-            // Select a movie
-            for(int i = MAXATTEMPT; i >= 0; i--) {
-                displayMovies();
-
-                Console.Write("Select a movie: ");
-                movie = tryConvertingStringToInt(Console.ReadLine());
-
-                if(movie <= movieList.Count && movie > 0)
-                    break;
-                else if(i > 0)
-                    displayInvalidInput(i);
-                else
-                    return;
-            }
-
-            for(int i = MAXATTEMPT; i >= 0; i--) {
-                Console.Write("\nSelect a screening type [2D/3D]: ");
-                screeningType = Console.ReadLine().ToUpper();
-
-                if(screeningType.Equals("2D") || screeningType.Equals("3D"))
-                    break;
-                else if(i > 0)
-                    displayInvalidInput(i);
-                else
-                    return;
-            }
-
-            for(int i = MAXATTEMPT; i >= 0; i--) {
-                Console.Write("Enter a screening date and time [eg.DD/MM/YYYY HH:MM]: ");
-                date = tryConvertingStringToDateTime(Console.ReadLine());
-
-                if(date.Year != 1)
-                    break;
-                else if(i > 0)
-                    displayInvalidInput(i);
-                else
-                    return;
-            }
-
-            screeningList.Add(new Screening(date, screeningType, cinemaHallList[--cinemaHall], movieList[--movie]));
-            Console.WriteLine("\nMovie screening successfully created.");
-        }
-
-        // Option 3
-        public static void listMovieScreening() {
-            Console.WriteLine("\nOption 3. List Movie Screenings");
-
-            int option = 0;
-
-            for(int i = MAXATTEMPT; i >= 0; i--) {
-                displayMovies();
-
-                Console.Write("Select a movie: ");
-                option = tryConvertingStringToInt(Console.ReadLine());
-
-                if(option <= movieList.Count && option > 0)
-                    break;
-                else if (i > 0)
-                    displayInvalidInput(i);
-                else
-                    return;
-            }
-
-            option--;
-            Console.WriteLine(String.Format("\n{0,-20} {1,-15} {2, -25} {3, -20}",
-                "Location", "Type", "Date/Time", "Seats Remaining"));
-
-            foreach(Screening screening in screeningList) {
-                if(screening.Movie == movieList[option]) {
-                    Console.WriteLine(String.Format("{0,-20} {1,-15} {2, -25} {3, -20}",
-                        screening.CinemaHall.Name, screening.ScreeningType,
-                        screening.ScreeningDateTime.ToString("dd/MM/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture),
-                        screening.SeatsRemaining));
-                }
-            }
-            
-        }
-
-        // Option 4
-        public static void deleteMovieScreening() {
-            Console.WriteLine("\nOption 4. Delete Movie Screenings");
-
-            for(int i = MAXATTEMPT; i >= 0; i--) {
-                displayMovieScreening();
-
-                Console.Write("Enter a screening number to delete: ");
-                int numberToDelete = tryConvertingStringToInt(Console.ReadLine());
-
-                if(numberToDelete > 0) {
-                    foreach(Screening screening in screeningList) {
-                        if(Int32.Parse(screening.ScreeningNo) == numberToDelete) {
-                            screeningList.Remove(screening);
-                            Console.WriteLine("\nScreening deleted.");
-                            return;
-                        }
-                    }
-                }
-
-                if(i > 0)
-                    displayInvalidInput(i);
-                else
-                    return;
-            }
-        }
-
-        //////////////////// OTHER METHODS ////////////////////
-        public static void displayMovies() {
-            Console.WriteLine(String.Format("\n{0,-5} {1,-30} {2,-15} {3, -20} {4, -20} {5, -20}",
-                "No", "Title", "Duration", "Genre", "Classification", "Opening Date"));
-            int count = 0;
-            foreach(Movie movie in movieList) {
-                count++;
-                Console.WriteLine("{0,-5} {1,-30}", count, movie.ToString());
-            }
-        }
-
-        public static void displayCinemaHall() {
-            Console.WriteLine(String.Format("\n{0,-5} {1,-15} {2,-15} {3, -15}",
-                "No", "Cinema Name", "Hall No", "Capacity"));
-            int count = 0;
-            foreach (CinemaHall hall in cinemaHallList) {
-                count++;
-                Console.WriteLine(String.Format("{0,-5} {1,-20}", count, hall.ToString()));
-            }
-        }
-
-        public static void displayMovieScreening() {
-            Console.WriteLine(String.Format("\n{0,-5} {1,-20} {2,-10} {3, -35} {4, -20}",
-                "No", "Location", "Hall No", "Title", "Date/Time"));
-            
-            foreach(Screening screening in screeningList) {
-                Console.WriteLine(screening.ToString());
-            }
-        }
-
-        //////////////////// ETC (Utility methods) ////////////////////
         public static void generateInformation() {
             // Add movies
             movieList.Add(new Movie("The Great Wall", 103, MovieClassification.NC16.ToString(),

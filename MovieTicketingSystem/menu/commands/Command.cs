@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieTicketingSystem.util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace MovieTicketingSystem.menu.commands {
 
     // Command Pattern Implementation
     interface Command {
-        void execute();
+        void execute(OptionAttempt attempt);
     }
 }
