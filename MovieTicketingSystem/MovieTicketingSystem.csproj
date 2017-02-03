@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="util\Display.cs" />
+    <Compile Include="member\Member.cs" />
+    <Compile Include="menu\commands\options\OrderMovieTicket.cs" />
+    <Compile Include="menu\util\Display.cs" />
     <Compile Include="menu\commands\options\AddMovieScreening.cs" />
     <Compile Include="menu\commands\Command.cs" />
     <Compile Include="menu\commands\options\DeleteMovieScreening.cs" />
@@ -51,11 +53,11 @@
     <Compile Include="menu\commands\options\ListMovieScreening.cs" />
     <Compile Include="menu\commands\Remote.cs" />
     <Compile Include="menu\Menu.cs" />
+    <Compile Include="menu\util\Select.cs" />
     <Compile Include="movie\MovieClassification.cs" />
     <Compile Include="movie\MovieGenre.cs" />
     <Compile Include="ticket\TicketFactory.cs" />
     <Compile Include="ticket\type\Adult.cs" />
-    <Compile Include="Attempt.cs" />
     <Compile Include="CinemaHall.cs" />
     <Compile Include="movie\Movie.cs" />
     <Compile Include="Order.cs" />
@@ -66,14 +68,12 @@
     <Compile Include="ticket\type\Student.cs" />
     <Compile Include="ticket\Ticket.cs" />
     <Compile Include="menu\commands\OptionAttempt.cs" />
-    <Compile Include="util\Utility.cs" />
+    <Compile Include="menu\util\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Member\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

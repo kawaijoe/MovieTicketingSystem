@@ -1,5 +1,4 @@
-﻿using MovieTicketingSystem.util;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,8 +17,10 @@ namespace MovieTicketingSystem.menu.commands {
         public void executeCommand(int option) {
             Command command;
             command = commandDictionary.TryGetValue(option, out command) ? command : null;
-            if(command == null) Console.WriteLine("You have entered an invalid option! Please try again.");
-            command.execute(attempt);
+            if(command == null)
+                Console.WriteLine("You have entered an invalid option! Please try again.");
+            else
+                command.execute(attempt);
         }
 
     }

@@ -1,11 +1,11 @@
-﻿using MovieTicketingSystem.util;
+﻿using MovieTicketingSystem.menu.util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieTicketingSystem.menu.commands {
+namespace MovieTicketingSystem.menu.commands.options {
     class DeleteMovieScreening:Command {
 
         // Option 4
@@ -26,13 +26,11 @@ namespace MovieTicketingSystem.menu.commands {
                         if(Int32.Parse(screening.ScreeningNo) == numberToDelete) {
                             Program.screeningList.Remove(screening);
                             Console.WriteLine("\nScreening deleted.");
-                            // Return true since the operation is a success
-                            return true;
+                            return true; // Return true since the operation is a success
                         }
                     }
                 }
-                // Return false since the operation is a failure
-                return false;
+                return false; // Return false since the operation is a failure
             });
 
         }

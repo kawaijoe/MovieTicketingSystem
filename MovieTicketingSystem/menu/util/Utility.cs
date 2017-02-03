@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieTicketingSystem.util {
+namespace MovieTicketingSystem.menu.util {
     class Utility {
 
         public static int tryConvertingStringToInt(String text) {

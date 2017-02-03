@@ -5,6 +5,7 @@
 //============================================================
 using MovieTicketingSystem.menu;
 using MovieTicketingSystem.menu.commands;
+using MovieTicketingSystem.menu.commands.options;
 using MovieTicketingSystem.movie;
 using System;
 using System.Collections.Generic;
@@ -15,23 +16,6 @@ using System.Threading.Tasks;
 
 namespace MovieTicketingSystem {
     class Program {
-        /*
-         * Rants about the flawed design of this assignment
-         * 
-         * CHAPTER 1: Abuse of override ToString() method
-         * Some may insist that the ToString() method may be good for debugging, however there are much more appropriate
-         * tools such as loggers and unit testing.
-         * 
-         * The ToString() method should only be used if you are creating your own collection/data type for example.
-         * For instance, creating your own implementation of a WeakList<> which is currently not in C# collections library.
-         * 
-         * If you can name me a popular open source library that abused ToString() in such a way.
-         * (Every class having a ToString() method)
-         * I'll follow your pretty dang useless convention. Good luck with that :P
-         * 
-         * CHAPTER 2: Properties vs Variables
-         * 
-        */
 
         public static List<Movie> movieList = new List<Movie>();
         public static List<Screening> screeningList = new List<Screening>();
@@ -53,19 +37,18 @@ namespace MovieTicketingSystem {
             "0.  Exit\n" +
             "=================================\n" +
             "Enter your option: ";
-        private static Menu menu;
 
         static void Main(string[] args) {
             generateInformation();
 
             // Start menu
-            menu = new Menu(MENU_TEXT, new Dictionary<int, Command>(){
+            new Menu(MENU_TEXT, new Dictionary<int, Command>(){
                 { 1, new ListAllMovies() },
                 { 2, new AddMovieScreening() },
                 { 3, new ListMovieScreening() },
-                { 4, new DeleteMovieScreening() }
-            });
-            menu.run();
+                { 4, new DeleteMovieScreening() },
+                { 5, new OrderMovieTicket() }
+            }).run();
         }
 
         public static void generateInformation() {

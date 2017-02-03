@@ -1,11 +1,11 @@
-﻿using MovieTicketingSystem.util;
+﻿using MovieTicketingSystem.menu.util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieTicketingSystem.menu.commands {
+namespace MovieTicketingSystem.menu.commands.options {
     class AddMovieScreening:Command {
 
         // Option 2
@@ -34,17 +34,9 @@ namespace MovieTicketingSystem.menu.commands {
             cinemaHall = (int) temptObject;
 
             // Select a movie
-            temptObject = attempt.run(() => {
-                Display.movies();
-
-                Console.Write("Select a movie: ");
-                return Utility.tryConvertingStringToInt(Console.ReadLine());
-            },
-            obj => {
-                return ((int) obj <= Program.movieList.Count && (int) obj > 0);
-            });
-            if(temptObject == null) return;
-            movie = (int) temptObject;
+            movie = Select.Movie(attempt);
+            if(movie == -1) // Selecting a movie has failed
+                return;
 
             // Select screening type
             temptObject = attempt.run(() => {
@@ -71,5 +63,6 @@ namespace MovieTicketingSystem.menu.commands {
             Program.screeningList.Add(new Screening(date, screeningType, Program.cinemaHallList[--cinemaHall], Program.movieList[--movie]));
             Console.WriteLine("\nMovie screening successfully created.");
         }
+
     }
 }

@@ -1,5 +1,5 @@
 ﻿using MovieTicketingSystem.menu.commands;
-using MovieTicketingSystem.util;
+using MovieTicketingSystem.menu.util;
 using System;
 using System.Collections.Generic;
 using System.Linq;

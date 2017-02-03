@@ -15,9 +15,7 @@ namespace MovieTicketingSystem {
         public int HallNo { get; set; }
         public int Capacity { get; set; }
 
-
-        public CinemaHall() {
-        }
+        public CinemaHall() { }
 
         public CinemaHall(String name, int hallNo, int capacity) {
             this.Name = name;

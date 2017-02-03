@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieTicketingSystem.menu.commands {
+namespace MovieTicketingSystem.menu.util {
     class Display {
 
         public static void movies() {

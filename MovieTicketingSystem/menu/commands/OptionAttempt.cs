@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieTicketingSystem.util {
+namespace MovieTicketingSystem.menu.commands {
     class OptionAttempt {
 
         //public delegate void Consumer();
@@ -13,8 +13,7 @@ namespace MovieTicketingSystem.util {
 
         private const int MAX_ATTEMPT = Program.MAX_ATTEMPT;
 
-        public OptionAttempt() {
-        }
+        public OptionAttempt() { }
 
         public Object run(Consumer attemptRun, ObjectPredicate attemptCorrect) {
             Object obj = new Object();
