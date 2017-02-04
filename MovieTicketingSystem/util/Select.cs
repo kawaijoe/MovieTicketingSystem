@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieTicketingSystem.menu.util {
+namespace MovieTicketingSystem.util {
     class Select {
         
         private static Object temptObject = new Object();

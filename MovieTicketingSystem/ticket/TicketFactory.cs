@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieTicketingSystem.menu.commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,26 +10,22 @@ namespace MovieTicketingSystem.ticket {
     // Simple factory implementation
     class TicketFactory {
 
-        /*
-         * NOTE: I did not implement any try and catch statement to catch a cast exception as it
-         *       will be unrecoverable. Essentially, there is nothing we can do to fix the problem.
-         */
-        public static Ticket createTicket(String type, Screening screening, Object obj) {
+        public static Ticket createTicket(String type, Screening screening, OptionAttempt attempt) {
             type = type.ToUpper();
             Ticket ticket;
 
             switch(type) {
                 case "ADULT":
-                    ticket = new Adult(screening, (bool)obj);
+                    ticket = new Adult(screening, attempt);
                     break;
 
                 case "SENIOR":
                 case "SENIORCITIZEN":
-                    ticket = new SeniorCitizen(screening, (int)obj);
+                    ticket = new SeniorCitizen(screening, attempt);
                     break;
 
                 case "STUDENT":
-                    ticket = new Student(screening, (String)obj);
+                    ticket = new Student(screening, attempt);
                     break;
 
                 default:

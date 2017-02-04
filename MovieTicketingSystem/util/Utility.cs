@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieTicketingSystem.menu.util {
+namespace MovieTicketingSystem.util {
     class Utility {
 
         public static int tryConvertingStringToInt(String text) {
@@ -15,9 +15,15 @@ namespace MovieTicketingSystem.menu.util {
 
         public static DateTime tryConvertingStringToDateTime(String text) {
             DateTime date;
-            string[] formats = { "dd/MM/yyyy HH:mm" };
+            string[] formats = { "dd/MM/yyyy HH:mm", "yyyy" };
             return DateTime.TryParseExact(text, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out date)
                 ? date : new DateTime(1, 1, 1, 1, 1, 1);
+        }
+
+        public static bool IsFridayToSunday(DateTime date) {
+            return date.DayOfWeek == DayOfWeek.Friday ||
+                date.DayOfWeek == DayOfWeek.Saturday ||
+                date.DayOfWeek == DayOfWeek.Sunday;
         }
 
     }

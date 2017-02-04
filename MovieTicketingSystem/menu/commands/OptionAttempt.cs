@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace MovieTicketingSystem.menu.commands {
     class OptionAttempt {
 
-        //public delegate void Consumer();
         public delegate Object Consumer();
         public delegate bool ObjectPredicate(Object obj);
 

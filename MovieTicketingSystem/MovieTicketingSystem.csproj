@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="member\Member.cs" />
     <Compile Include="menu\commands\options\OrderMovieTicket.cs" />
-    <Compile Include="menu\util\Display.cs" />
+    <Compile Include="util\Display.cs" />
     <Compile Include="menu\commands\options\AddMovieScreening.cs" />
     <Compile Include="menu\commands\Command.cs" />
     <Compile Include="menu\commands\options\DeleteMovieScreening.cs" />
@@ -53,7 +53,7 @@
     <Compile Include="menu\commands\options\ListMovieScreening.cs" />
     <Compile Include="menu\commands\Remote.cs" />
     <Compile Include="menu\Menu.cs" />
-    <Compile Include="menu\util\Select.cs" />
+    <Compile Include="util\Select.cs" />
     <Compile Include="movie\MovieClassification.cs" />
     <Compile Include="movie\MovieGenre.cs" />
     <Compile Include="ticket\TicketFactory.cs" />
@@ -68,7 +68,7 @@
     <Compile Include="ticket\type\Student.cs" />
     <Compile Include="ticket\Ticket.cs" />
     <Compile Include="menu\commands\OptionAttempt.cs" />
-    <Compile Include="menu\util\Utility.cs" />
+    <Compile Include="util\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
