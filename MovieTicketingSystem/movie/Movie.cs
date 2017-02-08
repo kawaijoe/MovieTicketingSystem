@@ -19,8 +19,7 @@ namespace MovieTicketingSystem {
         public DateTime OpeningDate { get; set; }
         public List<MovieGenre> GenreList { get; set; }
 
-        public Movie() {
-        }
+        public Movie() { }
 
         public Movie(String title, int duration, String classification, DateTime openingDate, List<MovieGenre> genreList) {
             this.Title = title;

@@ -44,7 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="member\Member.cs" />
+    <Compile Include="menu\commands\options\AddMovieRating.cs" />
     <Compile Include="menu\commands\options\OrderMovieTicket.cs" />
+    <Compile Include="menu\commands\options\ViewMovieRating.cs" />
+    <Compile Include="movie\MovieRating.cs" />
     <Compile Include="util\Display.cs" />
     <Compile Include="menu\commands\options\AddMovieScreening.cs" />
     <Compile Include="menu\commands\Command.cs" />

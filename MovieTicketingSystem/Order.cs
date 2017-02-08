@@ -17,7 +17,7 @@ namespace MovieTicketingSystem {
         public DateTime OrderDateTime { get; set; }
         public double Amount { get; set; }
         public String Status { get; set; }
-        public List<Ticket> TicketList { get; set; }
+        public List<Ticket> TicketList { get; set; } = new List<Ticket>();
 
         public Order() {
             OrderNo = (++OrderCount).ToString();

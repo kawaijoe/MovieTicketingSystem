@@ -20,8 +20,7 @@ namespace MovieTicketingSystem {
         public CinemaHall CinemaHall { get; set; }
         public Movie Movie { get; set; }
 
-        public Screening() {
-        }
+        public Screening() { }
 
         public Screening(DateTime screeningDateTime, String screeningType, CinemaHall cinemaHall, Movie movie) {
             ScreeningNo = (++ScreeningCount).ToString();

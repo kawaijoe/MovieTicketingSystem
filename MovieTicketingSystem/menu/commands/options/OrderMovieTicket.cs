@@ -1,4 +1,9 @@
-﻿using System;
+﻿//============================================================
+// Student Number	: S10173251C, S10166858B
+// Student Name	    : Chin Wei Hong, Joe Kawai
+// Module  Group	: IT04
+//============================================================
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +17,7 @@ namespace MovieTicketingSystem.menu.commands.options {
 
         public OrderMovieTicket() { }
 
-        public void execute(OptionAttempt attempt) {
+        public void Execute(OptionAttempt attempt) {
             Console.WriteLine("\nOption 5. Order Movie Tickets");
 
             Object temptObject = new Object();
@@ -30,8 +35,8 @@ namespace MovieTicketingSystem.menu.commands.options {
             movie--; // Adjust movie for indexing
 
             // Select a session
-            temptObject = attempt.run(() => {
-                Console.WriteLine(String.Format("{0, -5} {1,-20} {2,-15} {3, -25} {4, -20}",
+            temptObject = attempt.Run(() => {
+                Console.WriteLine(String.Format("\n{0, -5} {1,-20} {2,-15} {3, -25} {4, -20}",
                "No", "Location", "Type", "Date/Time", "Seats Remaining"));
                 foreach(Screening screening in Program.screeningList) {
                     if(screening.Movie == Program.movieList[movie]) {
@@ -42,7 +47,7 @@ namespace MovieTicketingSystem.menu.commands.options {
                     }
                 }
                 Console.Write("Select a session: ");
-                return Utility.tryConvertingStringToInt(Console.ReadLine());
+                return Utility.TryConvertingStringToInt(Console.ReadLine());
             },
             obj => {
                 List<int> correctList = new List<int>();
@@ -55,16 +60,16 @@ namespace MovieTicketingSystem.menu.commands.options {
             });
             if(temptObject == null) return;
             foreach(Screening screening in Program.screeningList) {
-                if(screening.ScreeningNo.Equals(temptObject)) {
+                if(screening.ScreeningNo.Equals(temptObject.ToString())) {
                     session = screening;
                     break;
                 }
             }
 
             // Number of tickets you wish to purchase
-            temptObject = attempt.run(() => {
-                Console.Write("Please enter number of tickets you wish to purchase: ");
-                return Utility.tryConvertingStringToInt(Console.ReadLine());
+            temptObject = attempt.Run(() => {
+                Console.Write("\nPlease enter number of tickets you wish to purchase: ");
+                return Utility.TryConvertingStringToInt(Console.ReadLine());
             },
             obj => {
                 return (int) obj > 0;
@@ -73,7 +78,7 @@ namespace MovieTicketingSystem.menu.commands.options {
             numOfTickets = (int) temptObject;
 
             // Movie Classification
-            temptObject = attempt.run(() => {
+            temptObject = attempt.Run(() => {
                 Console.Write("The movie classification is " +
                     Program.movieList[movie].Classification.ToString() +
                     ". Does every ticket holder meet the age requirements [Y/N]? ");
@@ -88,8 +93,8 @@ namespace MovieTicketingSystem.menu.commands.options {
             for(int i = 1; i <= numOfTickets; i++) {
 
                 // Get ticket type
-                temptObject = attempt.run(() => {
-                    Console.WriteLine("Ticket #" + i);
+                temptObject = attempt.Run(() => {
+                    Console.WriteLine("\nTicket #" + i);
                     Console.Write("Type of ticket to purchase [Student/Senior/Adult]: ");
                     return Console.ReadLine().ToUpper();
                 },
@@ -102,18 +107,18 @@ namespace MovieTicketingSystem.menu.commands.options {
                 if(temptObject == null) return;
 
                 // Hand resposibility over to TicketFactory
-                Ticket ticket = TicketFactory.createTicket((String) temptObject, session, attempt);
+                Ticket ticket = TicketFactory.CreateTicket((String) temptObject, session, attempt);
 
                 // Check if an error has occurred
-                if(ticket is Adult && ((Adult)ticket).PopcornOffer == null) return;
-                else if(ticket is SeniorCitizen && ((SeniorCitizen)ticket).YearOfBirth == null) return;
-                else if(ticket is Student && ((Student)ticket).LevelOfStudy == null) return;
+                if(ticket is Adult && ((Adult) ticket).PopcornOffer == null) return;
+                else if(ticket is SeniorCitizen && ((SeniorCitizen) ticket).YearOfBirth == null) return;
+                else if(ticket is Student && ((Student) ticket).LevelOfStudy == null) return;
 
                 order.AddTicket(ticket);
             }
 
             // Order Summary
-            Console.WriteLine("Order #" + order.OrderNo);
+            Console.WriteLine("\nOrder #" + order.OrderNo);
             Console.WriteLine("==========");
             Console.WriteLine("Movie title: " + session.Movie.Title);
             Console.WriteLine("Cinema: " + session.CinemaHall.Name);

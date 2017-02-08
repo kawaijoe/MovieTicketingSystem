@@ -1,4 +1,9 @@
-﻿using MovieTicketingSystem.util;
+﻿//============================================================
+// Student Number	: S10173251C, S10166858B
+// Student Name	    : Chin Wei Hong, Joe Kawai
+// Module  Group	: IT04
+//============================================================
+using MovieTicketingSystem.util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +14,9 @@ namespace MovieTicketingSystem.menu.commands.options {
     class AddMovieScreening:Command {
 
         // Option 2
-        public AddMovieScreening() {
-        }
+        public AddMovieScreening() { }
 
-        public void execute(OptionAttempt attempt) {
+        public void Execute(OptionAttempt attempt) {
             Console.WriteLine("\nOption 2. Add Movie Screening");
 
             int cinemaHall = 0;
@@ -22,10 +26,10 @@ namespace MovieTicketingSystem.menu.commands.options {
             DateTime date = new DateTime(1, 1, 1);
 
             // Select a cinema hall
-            temptObject = attempt.run(() => {
-                Display.cinemaHall();
+            temptObject = attempt.Run(() => {
+                Display.CinemaHall();
                 Console.Write("Select a cinema hall: ");
-                return Utility.tryConvertingStringToInt(Console.ReadLine());
+                return Utility.TryConvertingStringToInt(Console.ReadLine());
             },
             obj => {
                 return ((int) obj <= Program.cinemaHallList.Count && (int) obj > 0);
@@ -39,7 +43,7 @@ namespace MovieTicketingSystem.menu.commands.options {
                 return;
 
             // Select screening type
-            temptObject = attempt.run(() => {
+            temptObject = attempt.Run(() => {
                 Console.Write("\nSelect a screening type [2D/3D]: ");
                 return Console.ReadLine().ToUpper();
             },
@@ -50,17 +54,18 @@ namespace MovieTicketingSystem.menu.commands.options {
             screeningType = (String) temptObject;
 
             // Enter a screening date and time
-            temptObject = attempt.run(() => {
+            temptObject = attempt.Run(() => {
                 Console.Write("Enter a screening date and time [eg.DD/MM/YYYY HH:MM]: ");
-                return Utility.tryConvertingStringToDateTime(Console.ReadLine());
+                return Utility.TryConvertingStringToDateTime(Console.ReadLine());
             },
             obj => {
-                return (((DateTime)obj).Year != 1);
+                return ((((DateTime)obj).Year != 1) && ((DateTime)obj).Date >= Program.movieList[movie-1].OpeningDate.Date);
             });
             if(temptObject == null) return;
             date = (DateTime) temptObject;
 
-            Program.screeningList.Add(new Screening(date, screeningType, Program.cinemaHallList[--cinemaHall], Program.movieList[--movie]));
+            Program.screeningList.Add(new Screening(date, screeningType, Program.cinemaHallList[--cinemaHall],
+                Program.movieList[--movie]));
             Console.WriteLine("\nMovie screening successfully created.");
         }
 

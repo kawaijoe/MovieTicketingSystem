@@ -1,4 +1,9 @@
-﻿using MovieTicketingSystem.menu.commands;
+﻿//============================================================
+// Student Number	: S10173251C, S10166858B
+// Student Name	    : Chin Wei Hong, Joe Kawai
+// Module  Group	: IT04
+//============================================================
+using MovieTicketingSystem.menu.commands;
 using MovieTicketingSystem.util;
 using System;
 using System.Collections.Generic;
@@ -17,19 +22,19 @@ namespace MovieTicketingSystem.menu {
             remote = new Remote(commandDictionary);
         }
 
-        public void run() {
+        public void Run() {
             int option;
             while(true) {
-                option = getMenuOption();
+                option = GetMenuOption();
                 if(option == 0) break;
 
-                remote.executeCommand(option);
+                remote.ExecuteCommand(option);
             }
         }
 
-        private int getMenuOption() {
+        private int GetMenuOption() {
             Console.Write(optionText);
-            return Utility.tryConvertingStringToInt(Console.ReadLine());
+            return Utility.TryConvertingStringToInt(Console.ReadLine());
         }
 
     }

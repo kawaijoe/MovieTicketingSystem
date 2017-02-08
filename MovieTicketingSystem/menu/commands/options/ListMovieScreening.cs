@@ -1,4 +1,9 @@
-﻿using MovieTicketingSystem.util;
+﻿//============================================================
+// Student Number	: S10173251C, S10166858B
+// Student Name	    : Chin Wei Hong, Joe Kawai
+// Module  Group	: IT04
+//============================================================
+using MovieTicketingSystem.util;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,7 +17,7 @@ namespace MovieTicketingSystem.menu.commands.options {
         // Option 3
         public ListMovieScreening() { }
 
-        public void execute(OptionAttempt attempt) {
+        public void Execute(OptionAttempt attempt) {
             Console.WriteLine("\nOption 3. List Movie Screenings");
 
             int option = 0;

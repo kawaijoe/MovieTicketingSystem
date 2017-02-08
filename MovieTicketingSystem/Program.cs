@@ -21,6 +21,7 @@ namespace MovieTicketingSystem {
         public static List<Screening> screeningList = new List<Screening>();
         public static List<CinemaHall> cinemaHallList = new List<CinemaHall>();
         public static List<Order> orderList = new List<Order>();
+        public static List<MovieRating> movieRatingList = new List<MovieRating>();
 
         public const int MAX_ATTEMPT = 3;
 
@@ -39,7 +40,7 @@ namespace MovieTicketingSystem {
             "Enter your option: ";
 
         static void Main(string[] args) {
-            generateInformation();
+            GenerateInformation();
 
             // Start menu
             new Menu(MENU_TEXT, new Dictionary<int, Command>(){
@@ -47,11 +48,13 @@ namespace MovieTicketingSystem {
                 { 2, new AddMovieScreening() },
                 { 3, new ListMovieScreening() },
                 { 4, new DeleteMovieScreening() },
-                { 5, new OrderMovieTicket() }
-            }).run();
+                { 5, new OrderMovieTicket() },
+                { 6, new AddMovieRating() },
+                { 7, new ViewMovieRating() }
+            }).Run();
         }
 
-        public static void generateInformation() {
+        public static void GenerateInformation() {
             // Add movies
             movieList.Add(new Movie("The Great Wall", 103, MovieClassification.NC16.ToString(),
                 new DateTime(2016, 12, 29), new List<MovieGenre> { MovieGenre.Action, MovieGenre.Adventure }));

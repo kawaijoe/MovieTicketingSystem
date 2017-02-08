@@ -1,4 +1,9 @@
-﻿using System;
+﻿//============================================================
+// Student Number	: S10173251C, S10166858B
+// Student Name	    : Chin Wei Hong, Joe Kawai
+// Module  Group	: IT04
+//============================================================
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,13 +19,13 @@ namespace MovieTicketingSystem.menu.commands {
             this.commandDictionary = commandDictionary;
         }
 
-        public void executeCommand(int option) {
+        public void ExecuteCommand(int option) {
             Command command;
             command = commandDictionary.TryGetValue(option, out command) ? command : null;
             if(command == null)
                 Console.WriteLine("You have entered an invalid option! Please try again.");
             else
-                command.execute(attempt);
+                command.Execute(attempt);
         }
 
     }

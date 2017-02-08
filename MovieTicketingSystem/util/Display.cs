@@ -1,4 +1,9 @@
-﻿using System;
+﻿//============================================================
+// Student Number	: S10173251C, S10166858B
+// Student Name	    : Chin Wei Hong, Joe Kawai
+// Module  Group	: IT04
+//============================================================
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +12,7 @@ using System.Threading.Tasks;
 namespace MovieTicketingSystem.util {
     class Display {
 
-        public static void movies() {
+        public static void Movies() {
             Console.WriteLine(String.Format("\n{0,-5} {1,-30} {2,-15} {3, -20} {4, -20} {5, -20}",
                 "No", "Title", "Duration", "Genre", "Classification", "Opening Date"));
             int count = 0;
@@ -17,7 +22,7 @@ namespace MovieTicketingSystem.util {
             }
         }
 
-        public static void cinemaHall() {
+        public static void CinemaHall() {
             Console.WriteLine(String.Format("\n{0,-5} {1,-15} {2,-15} {3, -15}",
                 "No", "Cinema Name", "Hall No", "Capacity"));
             int count = 0;

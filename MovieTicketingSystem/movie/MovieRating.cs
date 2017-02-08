@@ -3,22 +3,22 @@
 // Student Name	    : Chin Wei Hong, Joe Kawai
 // Module  Group	: IT04
 //============================================================
-using MovieTicketingSystem.util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieTicketingSystem.menu.commands.options {
-    class ListAllMovies:Command {
-    
-        // Option 1
-        public ListAllMovies() { }
+namespace MovieTicketingSystem.movie {
+    class MovieRating {
+        public int Rating { get; }
+        public String Comment { get; }
+        public Movie Movie { get; }
 
-        public void Execute(OptionAttempt attempt) {
-            Console.WriteLine("\nOption 1. List All Movies");
-            Display.Movies();
+        public MovieRating(int rating, string comment, Movie movie) {
+            this.Rating = rating;
+            this.Comment = comment;
+            this.Movie = movie;
         }
     }
 }

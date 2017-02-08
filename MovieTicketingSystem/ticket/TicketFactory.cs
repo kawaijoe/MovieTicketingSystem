@@ -1,4 +1,9 @@
-﻿using MovieTicketingSystem.menu.commands;
+﻿//============================================================
+// Student Number	: S10173251C, S10166858B
+// Student Name	    : Chin Wei Hong, Joe Kawai
+// Module  Group	: IT04
+//============================================================
+using MovieTicketingSystem.menu.commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,11 +11,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MovieTicketingSystem.ticket {
-
     // Simple factory implementation
     class TicketFactory {
 
-        public static Ticket createTicket(String type, Screening screening, OptionAttempt attempt) {
+        public static Ticket CreateTicket(String type, Screening screening, OptionAttempt attempt) {
             type = type.ToUpper();
             Ticket ticket;
 
