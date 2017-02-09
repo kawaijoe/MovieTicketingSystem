@@ -20,15 +20,10 @@ namespace MovieTicketingSystem.menu.commands.options {
         public void Execute(OptionAttempt attempt) {
             Console.WriteLine("\nOption 3. List Movie Screenings");
 
-            int option = 0;
-            Object temptObject = new Object();
+            DisplayMovieScreening(Select.Movie(attempt) - 1); // - 1 for indexing
+        }
 
-            // Select a movie
-            option = Select.Movie(attempt);
-            if(option == -1) // Selecting a movie has failed
-                return;
-
-            option--;
+        private void DisplayMovieScreening(int option) {
             Console.WriteLine(String.Format("\n{0,-20} {1,-15} {2, -25} {3, -20}",
                 "Location", "Type", "Date/Time", "Seats Remaining"));
 
@@ -41,5 +36,6 @@ namespace MovieTicketingSystem.menu.commands.options {
                 }
             }
         }
+
     }
 }

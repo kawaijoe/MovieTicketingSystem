@@ -33,8 +33,7 @@ namespace MovieTicketingSystem.ticket {
                     break;
 
                 default:
-                    ticket = null;
-                    break;
+                    throw new SystemException(); // Throw SystemException as it can't be handled
             }
 
             return ticket;

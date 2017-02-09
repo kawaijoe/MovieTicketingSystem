@@ -22,10 +22,16 @@ namespace MovieTicketingSystem.menu.commands {
         public void ExecuteCommand(int option) {
             Command command;
             command = commandDictionary.TryGetValue(option, out command) ? command : null;
-            if(command == null)
+            if(command == null) {
                 Console.WriteLine("You have entered an invalid option! Please try again.");
-            else
-                command.Execute(attempt);
+            } else {
+                try {
+                    command.Execute(attempt);
+                } catch(InvalidOptionException) {
+                    // Pretty much do nothing :P
+                    // Automatically kicks user out back to the main menu
+                }
+            }
         }
 
     }

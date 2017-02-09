@@ -14,23 +14,19 @@ using System.Threading.Tasks;
 namespace MovieTicketingSystem {
     class Adult:Ticket {
 
-        public bool? PopcornOffer { get; set; } = null;
+        public bool PopcornOffer { get; set; }
 
         public Adult() { }
 
         public Adult(Screening screening, OptionAttempt attempt):base(screening) {
-            Object temptObj = new Object();
-
-            temptObj = attempt.Run(() => {
+            PopcornOffer = attempt.Run(() => {
                 Console.Write("Would you like to buy a popcorn set for $3.00 [Y/N]: ");
                 return Console.ReadLine().ToUpper();
             },
             obj => {
                 return obj.Equals("Y") ||
                     obj.Equals("N");
-            });
-            if(temptObj == null) return;
-            PopcornOffer = temptObj.Equals("Y") ? true : false;
+            }).Equals("Y") ? true : false;
         }
 
         public override double CalculatePrice() {
@@ -48,9 +44,7 @@ namespace MovieTicketingSystem {
                     cost += 11.00;
             }
 
-            if(PopcornOffer != null && (bool)PopcornOffer)
-                cost += 3.00;
-
+            if(PopcornOffer) cost += 3.00;
             return cost;
         }
 

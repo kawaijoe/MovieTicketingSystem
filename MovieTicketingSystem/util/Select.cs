@@ -16,7 +16,7 @@ namespace MovieTicketingSystem.util {
         private static Object temptObject = new Object();
 
         public static int Movie(OptionAttempt attempt) {
-            temptObject = attempt.Run(() => {
+            return (int) attempt.Run(() => {
                 Display.Movies();
 
                 Console.Write("Select a movie: ");
@@ -25,12 +25,9 @@ namespace MovieTicketingSystem.util {
             obj => {
                 return ((int) obj <= Program.movieList.Count && (int) obj > 0);
             });
-            if(temptObject == null) return -1; // Return -1 if failed
-            return (int)temptObject;
         }
 
         public static double MovieRating(Movie movie) {
-            // Get current rating for movie
             int total = 0;
             int count = 0;
 

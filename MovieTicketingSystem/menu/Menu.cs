@@ -34,7 +34,11 @@ namespace MovieTicketingSystem.menu {
 
         private int GetMenuOption() {
             Console.Write(optionText);
-            return Utility.TryConvertingStringToInt(Console.ReadLine());
+            try {
+                return Utility.TryConvertingStringToInt(Console.ReadLine());
+            } catch(FailedConversionException) {
+                return -1;
+            }
         }
 
     }

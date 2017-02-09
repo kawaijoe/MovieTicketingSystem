@@ -13,13 +13,19 @@ using System.Threading.Tasks;
 namespace MovieTicketingSystem.menu.commands.options {
     class DeleteMovieScreening:Command {
 
+        OptionAttempt attempt;
+
         // Option 4
         public DeleteMovieScreening() { }
 
         public void Execute(OptionAttempt attempt) {
             Console.WriteLine("\nOption 4. Delete Movie Screenings");
 
-            // Enter a screening date and time
+            this.attempt = attempt;
+            DeleteScreening();
+        }
+
+        private void DeleteScreening() {
             attempt.Run(() => {
                 Display.movieScreening();
 
@@ -37,7 +43,7 @@ namespace MovieTicketingSystem.menu.commands.options {
                 }
                 return false; // Return false since the operation is a failure
             });
-
         }
+
     }
 }

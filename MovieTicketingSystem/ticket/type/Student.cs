@@ -19,9 +19,7 @@ namespace MovieTicketingSystem {
         public Student() { }
 
         public Student(Screening screening, OptionAttempt attempt):base(screening) {
-            Object temptObj = new Object();
-
-            temptObj = attempt.Run(() => {
+            LevelOfStudy = (String) attempt.Run(() => {
                 Console.Write("Please enter level of study [Primary/Secondary/Tertiary]: ");
                 return Console.ReadLine().ToUpper();
             },
@@ -30,8 +28,6 @@ namespace MovieTicketingSystem {
                     obj.Equals("SECONDARY") ||
                     obj.Equals("TERTIARY");
             });
-            if(temptObj == null) return;
-            LevelOfStudy = (String) temptObj;
         }
 
         public override double CalculatePrice() {

@@ -19,19 +19,13 @@ namespace MovieTicketingSystem {
         public SeniorCitizen() { }
 
         public SeniorCitizen(Screening screening, OptionAttempt attempt):base(screening) {
-            Object temptObj = new Object();
-
-            temptObj = attempt.Run(() => {
+            YearOfBirth = ((DateTime) attempt.Run(() => {
                 Console.Write("Please enter year of birth [YYYY]: ");
                 return Utility.TryConvertingStringToDateTime(Console.ReadLine());
             },
             obj => {
-                int currentYear = DateTime.Today.Year;
-                return ((DateTime) obj).Year != 1 &&
-                    currentYear - 55 >= ((DateTime) obj).Year;
-            });
-            if(temptObj == null) return;
-            YearOfBirth = ((DateTime)temptObj).Year;
+                return DateTime.Today.Year - 55 >= ((DateTime) obj).Year;
+            })).Year;
         }
 
         public override double CalculatePrice() {

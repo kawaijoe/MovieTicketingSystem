@@ -3,6 +3,7 @@
 // Student Name	    : Chin Wei Hong, Joe Kawai
 // Module  Group	: IT04
 //============================================================
+using MovieTicketingSystem.util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,14 +24,19 @@ namespace MovieTicketingSystem.menu.commands {
         public Object Run(Consumer attemptRun, ObjectPredicate attemptCorrect) {
             Object obj = new Object();
             for(int i = MAX_ATTEMPT; i >= 0; i--) {
-                obj = attemptRun();
+                try {
+                    obj = attemptRun();
 
-                if(attemptCorrect(obj))
-                    break;
-                else if(i > 0)
+                    if(attemptCorrect(obj))
+                        break;
+                } catch(FailedConversionException) {
+                    // Do nothing
+                }
+
+                if(i > 0)
                     DisplayInvalidInput(i);
                 else
-                    return null;
+                    throw new InvalidOptionException();
             }
             return obj;
         }
@@ -42,7 +48,11 @@ namespace MovieTicketingSystem.menu.commands {
         public void Run(Consumer attemptRun) {
             Object obj = new Object();
             for(int i = MAX_ATTEMPT; i >= 0; i--) {
-                obj = attemptRun();
+                try {
+                    obj = attemptRun();
+                } catch(FailedConversionException) {
+                    // Do nothing
+                }
 
                 if(i > 0 && !(bool)obj)
                     DisplayInvalidInput(i);

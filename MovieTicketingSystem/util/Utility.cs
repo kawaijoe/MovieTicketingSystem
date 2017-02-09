@@ -13,16 +13,21 @@ using System.Threading.Tasks;
 namespace MovieTicketingSystem.util {
     class Utility {
 
+        // Returns -1 if convertion is unsuccessful
         public static int TryConvertingStringToInt(String text) {
             int n;
-            return int.TryParse(text, out n) ? n : -1;
+            if(!int.TryParse(text, out n))
+                throw new FailedConversionException();
+            return n;
         }
 
+        // Returns DateTime.Year == 1 if convertion is unsucessful
         public static DateTime TryConvertingStringToDateTime(String text) {
             DateTime date;
             string[] formats = { "dd/MM/yyyy HH:mm", "yyyy" };
-            return DateTime.TryParseExact(text, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out date)
-                ? date : new DateTime(1, 1, 1, 1, 1, 1);
+            if(!DateTime.TryParseExact(text, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                throw new FailedConversionException();
+            return date;
         }
 
         public static bool IsFridayToSunday(DateTime date) {

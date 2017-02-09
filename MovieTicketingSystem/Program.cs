@@ -50,7 +50,8 @@ namespace MovieTicketingSystem {
                 { 4, new DeleteMovieScreening() },
                 { 5, new OrderMovieTicket() },
                 { 6, new AddMovieRating() },
-                { 7, new ViewMovieRating() }
+                { 7, new ViewMovieRating() },
+                { 8, new ViewMovieRating() }
             }).Run();
         }
 
