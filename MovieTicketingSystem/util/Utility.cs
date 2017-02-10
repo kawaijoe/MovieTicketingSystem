@@ -4,11 +4,7 @@
 // Module  Group	: IT04
 //============================================================
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieTicketingSystem.util {
     class Utility {
@@ -24,7 +20,7 @@ namespace MovieTicketingSystem.util {
         // Returns DateTime.Year == 1 if convertion is unsucessful
         public static DateTime TryConvertingStringToDateTime(String text) {
             DateTime date;
-            string[] formats = { "dd/MM/yyyy HH:mm", "yyyy" };
+            string[] formats = { "dd/MM/yyyy HH:mm", "dd/MM/yyyy", "yyyy" };
             if(!DateTime.TryParseExact(text, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
                 throw new FailedConversionException();
             return date;

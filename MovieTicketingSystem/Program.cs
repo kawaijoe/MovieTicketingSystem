@@ -9,13 +9,28 @@ using MovieTicketingSystem.menu.commands.options;
 using MovieTicketingSystem.movie;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieTicketingSystem {
     class Program {
+
+        /*
+         * IMPORTANT NOTE:
+         *   Before using the movie recommendation. Please read what the variables below does.
+         * 
+         * - RATING_MODIFIER (Default = 25)
+         *   Must be an integer value between 0 - 100.
+         *   Higher RATING_MODIFIER means more influence rating will have
+         *   Lower RATING_MODIFIER means more influence genre will have
+         *      Eg. 0 = Only genre will be taken into account
+         *          100 = Only rating will be taken into account
+         *          
+         * - NO_MOVIE_ASKED (Default = 5)
+         *   Must be an integer value > 0.
+         *   Higher NO_MOVIE_ASKED will increase the algorithm accuracy
+         *   Lower NO_MOVIE_ASKED will make the sign up process faster
+         */
+        public const int RATING_MODIFIER = 25;
+        public const int NO_MOVIE_ASKED = 5;
 
         public static List<Movie> movieList = new List<Movie>();
         public static List<Screening> screeningList = new List<Screening>();
@@ -51,7 +66,7 @@ namespace MovieTicketingSystem {
                 { 5, new OrderMovieTicket() },
                 { 6, new AddMovieRating() },
                 { 7, new ViewMovieRating() },
-                { 8, new ViewMovieRating() }
+                { 8, new RecommendMovie() }
             }).Run();
         }
 

@@ -5,10 +5,6 @@
 //============================================================
 using MovieTicketingSystem.util;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 // DO NOT EDIT THIS CLASS. This class is closed for any modification :)
 namespace MovieTicketingSystem.menu.commands {
@@ -51,11 +47,13 @@ namespace MovieTicketingSystem.menu.commands {
                 try {
                     obj = attemptRun();
                 } catch(FailedConversionException) {
-                    // Do nothing
+                    obj = false;
                 }
 
                 if(i > 0 && !(bool)obj)
                     DisplayInvalidInput(i);
+                else if(i <= 0)
+                    throw new InvalidOptionException();
                 else
                     return;
             }

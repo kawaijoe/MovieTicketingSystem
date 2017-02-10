@@ -3,13 +3,8 @@
 // Student Name	    : Chin Wei Hong, Joe Kawai
 // Module  Group	: IT04
 //============================================================
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MovieTicketingSystem {
+namespace MovieTicketingSystem.ticket {
     abstract class Ticket {
         public Screening Screening { get; set; }
 

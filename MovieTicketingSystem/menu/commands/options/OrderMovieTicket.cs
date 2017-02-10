@@ -5,9 +5,6 @@
 //============================================================
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Globalization;
 using MovieTicketingSystem.ticket;
 using MovieTicketingSystem.util;
@@ -30,7 +27,7 @@ namespace MovieTicketingSystem.menu.commands.options {
 
             int movieIndex = Select.Movie(attempt) - 1;
             Screening session = SelectSession(movieIndex);
-            int numOfTickets = GetNoOfTicket();
+            int numOfTickets = GetNoOfTicket(session);
             CheckMovieClassification(movieIndex);
 
             // Ordering of tickets
@@ -41,6 +38,7 @@ namespace MovieTicketingSystem.menu.commands.options {
                 order.AddTicket(ticket);
             }
 
+            session.SeatsRemaining -= numOfTickets;
             PrintOrderSummary(order, session);
         }
 
@@ -77,13 +75,13 @@ namespace MovieTicketingSystem.menu.commands.options {
             return null; // Should never return null
         }
 
-        private int GetNoOfTicket() {
+        private int GetNoOfTicket(Screening session) {
             return (int) attempt.Run(() => {
                 Console.Write("\nPlease enter number of tickets you wish to purchase: ");
                 return Utility.TryConvertingStringToInt(Console.ReadLine());
             },
             obj => {
-                return (int) obj > 0;
+                return (int) obj > 0 && (int) obj <= session.SeatsRemaining;
             });
         }
 

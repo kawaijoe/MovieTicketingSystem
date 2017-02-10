@@ -6,33 +6,28 @@
 using MovieTicketingSystem.movie;
 using MovieTicketingSystem.util;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieTicketingSystem.menu.commands.options {
     class ViewMovieRating:Command {
 
+        // Option 7
         public ViewMovieRating() { }
 
         public void Execute(OptionAttempt attempt) {
             Console.WriteLine("\nOption 7. View Movie Rating and Comments");
 
-            // Get movie selection
-            int movieSelection = Select.Movie(attempt);
-            if(movieSelection == -1) return;
-            Movie movie = Program.movieList[movieSelection - 1];
-
-            // Get movie object
+            Movie movie = Program.movieList[Select.Movie(attempt) - 1];
             Console.WriteLine(String.Format("\nThe rating for {0} is {1:0.00}", movie.Title, Select.MovieRating(movie)));
+            PrintComments(movie);
+        }
 
-            // Get Comments
+        private void PrintComments(Movie movie) {
             int count = 0;
             foreach(MovieRating rating in Program.movieRatingList) {
                 if(rating.Movie == movie)
                     Console.WriteLine("Comment #" + ++count + ": " + rating.Comment);
             }
         }
+
     }
 }

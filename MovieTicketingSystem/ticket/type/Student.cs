@@ -4,12 +4,9 @@
 // Module  Group	: IT04
 //============================================================
 using MovieTicketingSystem.menu.commands;
+using MovieTicketingSystem.ticket;
 using MovieTicketingSystem.util;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieTicketingSystem {
     class Student:Ticket {
